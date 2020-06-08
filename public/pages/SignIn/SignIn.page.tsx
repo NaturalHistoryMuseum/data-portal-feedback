@@ -16,9 +16,9 @@ const messages = {
   private: () => (
     <>
       <p className="welcome">
-        <strong>{Fider.session.tenant.name}</strong> is a private space and requires an invitation to join it.
+        <strong>{Fider.session.tenant.name}</strong> is a private space and authentication.
       </p>
-      <p>If you have an account or an invitation, you may use following options to sign in.</p>
+      <p>If you have an NHM account, click the button below to sign in.</p>
     </>
   )
 };
@@ -37,7 +37,10 @@ export default class SignInPage extends React.Component<any, {}> {
       <div id="p-signin" className="page container">
         <div className="message">
           <TenantLogo size={100} />
-          {Fider.session.tenant.isPrivate ? messages.private() : messages.locked()}
+          <p className="welcome">
+            <strong>{Fider.session.tenant.name}</strong> is a private space and requires authentication.
+          </p>
+          <p>If you have an NHM account, click the button below to sign in.</p>
         </div>
         <SignInControl onEmailSent={this.onEmailSent} useEmail={true} redirectTo={Fider.settings.baseURL} />
         <LegalNotice />
