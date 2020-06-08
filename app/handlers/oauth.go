@@ -14,6 +14,7 @@ import (
 
 	"github.com/getfider/fider/app"
 	"github.com/getfider/fider/app/models"
+	"github.com/getfider/fider/app/pkg/env"
 	"github.com/getfider/fider/app/pkg/errors"
 	"github.com/getfider/fider/app/pkg/jwt"
 	"github.com/getfider/fider/app/pkg/log"
@@ -101,7 +102,7 @@ func OAuthToken() web.HandlerFunc {
 		}
 		if err != nil {
 			if errors.Cause(err) == app.ErrNotFound {
-				if c.Tenant().IsPrivate {
+				if c.Tenant().IsPrivate && !env.Config.OAuthAutoRegisterEnabled {
 					return c.Redirect("/not-invited")
 				}
 
