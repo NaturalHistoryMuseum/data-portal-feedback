@@ -4,25 +4,6 @@ import React from "react";
 import { SignInControl, TenantLogo, LegalNotice } from "@fider/components";
 import { notify, Fider } from "@fider/services";
 
-const messages = {
-  locked: () => (
-    <>
-      <p className="welcome">
-        <strong>{Fider.session.tenant.name}</strong> is currently locked.
-      </p>
-      <p>To reactivate this site, sign in with an administrator account and update the required settings.</p>
-    </>
-  ),
-  private: () => (
-    <>
-      <p className="welcome">
-        <strong>{Fider.session.tenant.name}</strong> is a private space and authentication.
-      </p>
-      <p>If you have an NHM account, click the button below to sign in.</p>
-    </>
-  )
-};
-
 export default class SignInPage extends React.Component<any, {}> {
   private onEmailSent = (email: string) => {
     notify.success(
